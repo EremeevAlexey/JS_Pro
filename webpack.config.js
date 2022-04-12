@@ -10,10 +10,13 @@ const isDev = !isProd
 const filename = (ext) => isDev ? `bundle.${ext}` : `bundle.[hash].${ext}`;
 
 const jsLoaders = () => {
-  const loaders = {
-    loader: 'babel-loader',
-  };
-  if (isDev) {
+  const loaders =[
+    {
+      loader: 'babel-loader',
+    }
+  ]
+
+  if (!isDev) {
     loaders.push('eslint-loader');
   }
   return loaders;
@@ -67,15 +70,6 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          // работает динамическое изменение
-          /* {
-                        loader: MiniCssExtractPlugin.loader,
-                        options:{
-                            hmr: isDev,
-                            reloadAll: true
-                        }
-
-                    },*/
           'css-loader',
           'sass-loader',
         ],
@@ -83,7 +77,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: jsLoaders(),
+        use: jsLoaders()
       },
     ],
   },
