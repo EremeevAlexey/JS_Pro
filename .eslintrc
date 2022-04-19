@@ -12,7 +12,10 @@
         "space-before-blocks":"off",
         "indent":"off",
         "comma-dangle":"off",
-        "emptyRules": "off"
+        "emptyRules": "off",
+        "arrow-parens":"off",
+        "operator-linebreak":"off",
+        "max-len":"off"
 
     },
     "extends":["eslint:recommended", "google"]
