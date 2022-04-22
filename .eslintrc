@@ -15,7 +15,9 @@
         "emptyRules": "off",
         "arrow-parens":"off",
         "operator-linebreak":"off",
-        "max-len":"off"
+        "max-len":"off",
+        "no-undef":"off",
+        "new-cap":"off"
 
     },
     "extends":["eslint:recommended", "google"]

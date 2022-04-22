@@ -3,30 +3,35 @@ const CODES = {
     Z: 90
 }
 
-function toCell(){
+function drowCell(_, column){
     return `
-    <div class="cell" contenteditable=""></div>
+    <div class="cell" contenteditable="" data-column="${column}"></div>
     `
 }
 
-function createColumn(column){
+function drowColumn(column, index){
     return `
-        <div class="column">
-        ${column}
+        <div class="column" data-type="resizeble" data-column="${index}">
+            ${column}
+            <div class="column-resize" data-resize="column"></div>
         </div>
     `
 }
 
 function createRow(index, content){
+    const resize = index ? '<div class="row-resize" data-resize="row"></div>' : ''
     return `
-        <div class="row">
-            <div class="row-info">${index ? index : ''}</div>
+        <div class="row" data-type="resizeble">
+            <div class="row-info">
+                ${index ? index : ''}
+                ${resize}
+            </div>
             <div class="row-data">${content}</div>
         </div>
     `
 }
 
-function toChar(_, index){
+function drowChar(_, index){
     return String.fromCharCode(CODES.A + index)
 }
 
@@ -36,8 +41,8 @@ export function createTable(rowsCount = 31){
 
     const cols = new Array(colsCout)
     .fill('')
-    .map(toChar)
-    .map(createColumn)
+    .map(drowChar)
+    .map(drowColumn)
     .join('')
 
     rows.push(createRow(null, cols))
@@ -45,7 +50,7 @@ export function createTable(rowsCount = 31){
     for (let i = 0; i < rowsCount; i++){
         const cells = new Array(colsCout)
         .fill('')
-        .map(toCell)
+        .map(drowCell)
         .join('')
         rows.push(createRow(i + 1, cells))
     }
