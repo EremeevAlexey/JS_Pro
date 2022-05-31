@@ -1,5 +1,4 @@
-// import {toInlineStyles} from '../assets/core/utils'
-import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE, CHANGE_TITLE} from './types'
+import {CHANGE_TEXT, CHANGE_STYLES, TABLE_RESIZE, APPLY_STYLE, CHANGE_TITLE, UPDATE_DATE} from './types'
 
 export function rootReducer(state, action){
     let field
@@ -18,13 +17,15 @@ export function rootReducer(state, action){
             val = state[field] || {}
             action.data.ids.forEach(id => {
                 val[id] = {...val[id], ...action.data.value}
-                // val[id] = toInlineStyles(action.data.value)
             })
             return {
                 ...state, [field]: val, currentStyles: {...state.currentStyles, ...action.data.value}
             }
         case CHANGE_TITLE:
             return {...state, title: action.data}
+        case UPDATE_DATE:
+            return {...state, createdDate: new Date().toJSON()}
+
         default: return state
     }
 }
