@@ -15,7 +15,6 @@ export class ExcelComponent extends DomListener{
     prepare(){
     }
 
-    // Возврат шаблона компонента
     toHTML(){
         return ''
     }
@@ -33,11 +32,6 @@ export class ExcelComponent extends DomListener{
         this.store.dispatch(action)
     }
 
-    /* $subscribe(fn){
-        this.storeSub = this.store.subscribe(fn)
-        // sub.unsubsribe()
-    }*/
-
     storeChanget(){}
 
     isWatching(key){
@@ -51,6 +45,5 @@ export class ExcelComponent extends DomListener{
     destroy(){
         this.removeDOMListeners()
         this.unsubsribes.forEach(unsub => unsub())
-        // this.storeSub.unsubscribe()
     }
 }

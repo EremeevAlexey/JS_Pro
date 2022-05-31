@@ -41,7 +41,6 @@ export function tableResizeHendler($root, event){
             resolve({
                 value,
                 type,
-                // id: type === 'column' ? $parent.data.column : $parent.data.row
                 id: $parent.data[type]
             })
 
